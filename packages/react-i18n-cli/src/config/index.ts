@@ -10,7 +10,7 @@ import log from "../utils/log";
 import { serializeCode } from "../utils/serializeCode";
 
 export const defaultConfigName = "i18n-cli.config.js";
-const defaultConfigPath = getAbsolutePath(
+export const defaultConfigPath = getAbsolutePath(
   path.resolve(process.cwd(), defaultConfigName)
 );
 
@@ -40,6 +40,7 @@ export const writeDefaultConfig = async () => {
     ]);
     if (answers.deleteOriginal) {
       // 删除源文件并替代
+      fs.rmSync(defaultConfigPath)
       storage.setConfigFileName(defaultConfigName);
       writeDefaultConfigFile();
     } else {
