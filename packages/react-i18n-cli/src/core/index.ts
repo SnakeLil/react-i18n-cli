@@ -7,6 +7,7 @@ import { globSync } from "glob";
 import cliProgress from "cli-progress";
 import { getChalk } from "../utils/chalk";
 import { FileExt } from "../types/file";
+import { transformCode } from "./transform";
 
 function isValidInput(input: string): boolean {
   const inputPath = getAbsolutePath(process.cwd(), input);
@@ -55,13 +56,17 @@ export const executeMain = async () => {
   progress.start(sourceFilePaths.length, 0);
   sourceFilePaths.forEach((filePath) => {
     const fileCode = fs.readFileSync(filePath, "utf8");
-    if(!fileCode || fileCode.trim() === '') {
-        progress.increment()
-        return
+    if (!fileCode || fileCode.trim() === "") {
+      progress.increment(1);
+      return;
     }
     // 文件名后缀
     const ext = path.extname(filePath).replace(".", "") as FileExt;
-    console.log(`提取转换文件: ${filePath}`);
+    transformCode(filePath, fileCode, ext);
+    progress.increment(1);
     // rules ext filePath fileCode
   });
+  progress.stop();
+  log.success("文件转换完成");
+  process.exit(1);
 };
