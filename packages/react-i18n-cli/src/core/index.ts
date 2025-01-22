@@ -54,7 +54,7 @@ export const executeMain = async () => {
     cliProgress.Presets.shades_classic
   );
   progress.start(sourceFilePaths.length, 0);
-  sourceFilePaths.forEach((filePath) => {
+  sourceFilePaths.forEach(async (filePath) => {
     const fileCode = fs.readFileSync(filePath, "utf8");
     if (!fileCode || fileCode.trim() === "") {
       progress.increment(1);
@@ -62,11 +62,9 @@ export const executeMain = async () => {
     }
     // 文件名后缀
     const ext = path.extname(filePath).replace(".", "") as FileExt;
-    transformCode(filePath, fileCode, ext);
-    progress.increment(1);
+    await transformCode(filePath, fileCode, ext);
     // rules ext filePath fileCode
   });
   progress.stop();
-  log.success("文件转换完成");
-  process.exit(1);
+  progress.increment(1);
 };

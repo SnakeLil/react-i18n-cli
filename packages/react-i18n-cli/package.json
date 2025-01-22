@@ -29,9 +29,7 @@
     "@babel/core": "^7.26.0",
     "@babel/generator": "^7.26.5",
     "@babel/plugin-syntax-decorators": "^7.25.9",
-    "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.26.3",
-    "@babel/preset-typescript": "^7.26.0",
+    "@babel/plugin-transform-typescript": "^7.26.5",
     "@babel/template": "^7.25.9",
     "@babel/traverse": "^7.26.5",
     "@babel/types": "^7.26.5",
@@ -57,6 +55,9 @@
     "slash": "3.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__generator": "^7.6.8",
     "@types/babel__template": "^7.4.4",
