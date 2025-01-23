@@ -16,7 +16,7 @@ const transformTsCode = async (filePath: string, fileCode: string) => {
     presets: [presetEnv, presetReact, presetTypescript],
   });
   if (result) {
-    // console.log(result);
+    // console.log(result.ast);
   }
 };
 export const transformCode = async (
